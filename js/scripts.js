@@ -1,9 +1,13 @@
 // Back End Logic
 var leapYear = function(year) {
-  if ((year % 4 === 0) && (year % 100 !== 0) || (year % 400 === 0)) {
-    return true;
-  } else {
+  if (typeof year === "string") {
     return false;
+  } else {
+    if ((year % 4 === 0) && (year % 100 !== 0) || (year % 400 === 0)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 };
 
@@ -11,17 +15,24 @@ var leapYear = function(year) {
 $(document).ready(function() {
   $("form#leap-year").submit(function(event) {
     var year = parseInt($("input#year").val());
-    var result = leapYear(year);
 
-    $(".year").text(year);
-
-    if (!result) {
-      $(".not").text("not");
+    if (isNaN(year)) {
+      $("#error").show();
+      $("#result").hide();
     } else {
-      $(".not").text("");
+      var result = leapYear(year);
+
+      $(".year").text(year);
+
+      if (!result) {
+        $(".not").text("not");
+      } else {
+        $(".not").text("");
+      }
+      $("#result").show();
+      $("#error").hide();
     }
 
-    $(".well").show();
     event.preventDefault();
   });
 });

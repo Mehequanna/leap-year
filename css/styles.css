@@ -1,3 +1,15 @@
-.well {
+#error,
+#result {
   display: none;
+  font-size: 36px;
+  text-align: center;
+}
+
+.well {
+  margin: 25px;
+}
+
+.btn {
+  margin: 0 auto;
+  display: block;
 }
